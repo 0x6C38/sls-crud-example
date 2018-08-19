@@ -7,7 +7,25 @@ custom:
 provider:
   name: aws
   runtime: nodejs8.10
+  environment:
+    TABLE_NAME: ${self:custom.tn}
 
 functions:
   hello:
     handler: handler.hello
+
+resources:
+ Resources:
+    ExampleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tn}
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: S
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
