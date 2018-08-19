@@ -1,5 +1,9 @@
 service: sls-crud
 
+custom:
+    nm: "sls-crud"
+    tn: ${self:custom.nm}-table
+
 provider:
   name: aws
   runtime: nodejs8.10
