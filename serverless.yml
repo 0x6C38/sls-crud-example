@@ -39,18 +39,18 @@ functions:
             parameters:
               paths:
                 id: true
-  delete:
-    handler: handler.deleteItem
-    events:
-      - http:
-          path: delete
-          method: delete
   update:
     handler: handler.update
     events:
       - http:
           path: update
           method: put
+  delete:
+    handler: handler.deleteItem
+    events:
+      - http:
+          path: delete
+          method: delete
 
 resources:
  Resources:
