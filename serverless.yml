@@ -29,6 +29,12 @@ functions:
       - http:
           path: create
           method: post
+  read:
+    handler: handler.read
+    events:
+      - http:
+          path: read
+          method: post
 
 resources:
  Resources:
