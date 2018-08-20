@@ -45,6 +45,12 @@ functions:
       - http:
           path: delete
           method: delete
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: update
+          method: put
 
 resources:
  Resources:

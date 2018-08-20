@@ -81,7 +81,7 @@ module.exports.deleteItem = async (event, context, callback) => {
 
   const response = {
     statusCode: 200,
-    body: JSON.stringify({message: "Item removed id:" + data.id})
+    body: JSON.stringify({message: "Eliminated item: " + data.id})
   };
 
   try {
@@ -92,4 +92,35 @@ module.exports.deleteItem = async (event, context, callback) => {
     console.log(e.message);
     return e;
   }
+}
+
+
+module.exports.update = async (event, context, callback) =>{
+  const data = JSON.parse(event.body);
+  const params = {
+      TableName: tn,
+      Key: {
+          id: data.id
+        },
+      UpdateExpression: "SET whatever = :whatever",
+      ExpressionAttributeValues: {
+        ":whatever": data.whatever ? data.whatever : null
+      },
+      ReturnValues: "ALL_NEW"
+  }
+  try {
+      const dynamoDb = new AWS.DynamoDB.DocumentClient();
+      const result = await dynamoDb["update"](params).promise();
+      
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify({message: "Update successful."})
+      };
+
+      callback(null, response);
+    } catch (e) {
+      console.log(data)
+      console.log(e)
+      return e;
+    }
 }
