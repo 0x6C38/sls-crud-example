@@ -57,7 +57,6 @@ module.exports.read = async (event, context, callback) => {
           statusCode: 200,
           body: r
         };
-      // console.log("result is" + result.Item.id);
 
       callback(null, response);
     } else {
@@ -66,6 +65,30 @@ module.exports.read = async (event, context, callback) => {
     }
   } catch (e) {
     console.log("error");
+    console.log(e.message);
+    return e;
+  }
+}
+
+module.exports.deleteItem = async (event, context, callback) => {
+  const data = JSON.parse(event.body);
+  const params = {
+    TableName: tn,
+    Key: {
+        id: data.id
+    }
+  };
+
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({message: "Item removed id:" + data.id})
+  };
+
+  try {
+    const dynamoDb = new AWS.DynamoDB.DocumentClient();
+    const result = await dynamoDb["delete"](params).promise();
+    callback(null, response);
+  } catch (e) {
     console.log(e.message);
     return e;
   }

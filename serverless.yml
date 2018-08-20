@@ -39,6 +39,12 @@ functions:
             parameters:
               paths:
                 id: true
+  delete:
+    handler: handler.deleteItem
+    events:
+      - http:
+          path: delete
+          method: delete
 
 resources:
  Resources:
