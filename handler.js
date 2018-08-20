@@ -37,16 +37,11 @@ module.exports.create = async (event, context, callback) => {
 }
 
 module.exports.read = async (event, context, callback) => {
-  console.log("logging parameters.");
-  // console.log(event.pathParameters);
-  const data = JSON.parse(event.body);
-  console.log(data);
-  console.log(data.id);
 
   const params = {
     TableName: tn,
     Key: {
-      id: data.id
+      id: event.pathParameters.id
     }
   };
 
