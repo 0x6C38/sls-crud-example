@@ -23,8 +23,12 @@ provider:
         Fn::GetAtt: [ExampleTable, Arn]
 
 functions:
-  hello:
-    handler: handler.hello
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: create
+          method: post
 
 resources:
  Resources:
