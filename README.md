@@ -1,5 +1,5 @@
-# Dynamodb CRUD on API Gateway & AWS Lambda with Serverless Framework
-This repository contains infrastructure code as well as lambda function code for performing create, read, update and delete operations on a Dynamodb table.
+# Dynamodb CRUD Example with Serverless Framework
+This repository contains code as the infrastructure definitions required for performing create, read, update and delete operations on a Dynamodb table.
 
 ## Requirements
 - Have nodejs v8.10+ and npm installed
