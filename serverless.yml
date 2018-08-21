@@ -67,3 +67,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+      #DeletionPolicy: Retain #If you want to keep the table on stack removal
